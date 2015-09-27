@@ -1,11 +1,15 @@
 package huskiehacks.project;
 
 import android.Manifest;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.preference.PreferenceFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -69,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER |
                         Geofence.GEOFENCE_TRANSITION_EXIT)
                 .build();
+
     }
 
     @Override
@@ -87,6 +92,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            //Open a settings menu
+            Intent i = new Intent(this, MyPreferenceActivity.class);
+            startActivity(i);
             return true;
         }
 
@@ -96,6 +104,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         helloWorld.setText("I am OKAY");
         if(helloWorld.getText().equals("I am OKAY")){
             helloWorld.setText("Test");
+        }
+
+    }
+
+    public static class PrefsFragment extends PreferenceFragment {
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+
+            // Load the preferences from an XML resource
+            addPreferencesFromResource(R.xml.pref_general);
         }
     }
 }
