@@ -44,11 +44,11 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
     override func viewDidLoad() {
         setMapOverlay()
 //        Alamofire.request(.POST, "https://ACa74e6c842e238982b354e6040eb57537:d2275e330cd056b4f45632d19c85afee@api.twilio.com/2010-04-01/Accounts/ACa74e6c842e238982b354e6040eb57537/Messages", parameters: ["From":"6302837348","To":"17083733133","Body":"Hello"])
-        authentication2()
+        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
 
     }
     
-    func authentication2(body: String){
+    func SendTwilioMessage(body: String){
         let request = NSMutableURLRequest(URL: NSURL(string: "https://ACa74e6c842e238982b354e6040eb57537:d2275e330cd056b4f45632d19c85afee@api.twilio.com/2010-04-01/Accounts/ACa74e6c842e238982b354e6040eb57537/Messages")!)
         request.HTTPMethod = "POST"
         
@@ -156,6 +156,7 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
     func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion!){
         NSLog("exit region")
         AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+        SendTwilioMessage("Your family member has wandered off!")
 
     }
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError!){

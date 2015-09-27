@@ -14,6 +14,7 @@ class SecondViewController: UIViewController,CLLocationManagerDelegate {
     var lastKnownLocation: CLLocation!
     var manager: CLLocationManager!
     @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var phoneField: UITextField!
     
 
     
@@ -61,6 +62,7 @@ class SecondViewController: UIViewController,CLLocationManagerDelegate {
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         textField.resignFirstResponder()
+        phoneField.resignFirstResponder()
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
