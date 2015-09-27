@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 import MapKit
 import AudioToolbox.AudioServices
+import Alamofire
 
 class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     var manager: CLLocationManager!
@@ -42,7 +43,34 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
 
     override func viewDidLoad() {
         setMapOverlay()
+//        Alamofire.request(.POST, "https://ACa74e6c842e238982b354e6040eb57537:d2275e330cd056b4f45632d19c85afee@api.twilio.com/2010-04-01/Accounts/ACa74e6c842e238982b354e6040eb57537/Messages", parameters: ["From":"6302837348","To":"17083733133","Body":"Hello"])
+        authentication2()
 
+    }
+    
+    func authentication2(body: String){
+        let request = NSMutableURLRequest(URL: NSURL(string: "https://ACa74e6c842e238982b354e6040eb57537:d2275e330cd056b4f45632d19c85afee@api.twilio.com/2010-04-01/Accounts/ACa74e6c842e238982b354e6040eb57537/Messages")!)
+        request.HTTPMethod = "POST"
+        
+        var from = "6302837348"
+        var to = "17083733133"
+        var postString:NSString = "From=\(from)&To=\(to)&Body=\(body)"
+        
+        request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
+            data, response, error in
+            
+            if error != nil {
+                NSLog("error=\(error)")
+                return
+            }
+            
+            NSLog("response = \(response)")
+            
+            let responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)
+            NSLog("responseString = \(responseString)")
+        }
+        task.resume()
     }
     
     func setMapOverlay(){
