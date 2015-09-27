@@ -5,6 +5,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -24,11 +25,19 @@ import com.google.android.gms.location.Geofence;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     Button imOKButton,homeButton;
     TextView helloWorld;
+    Location lastKnownCoords;
+    Location homeCoords = new Location("");
 
     public class homeOnClickListener implements Button.OnClickListener {
         //Do stuff
         public void onClick(View v){
-            helloWorld.setText("Home");
+            homeCoords = lastKnownCoords;
+            helloWorld.setText("Home Coords are: " + homeCoords.getLongitude() + " " + homeCoords.getLatitude());
+            SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putFloat(getString(R.string.homeLatitude), (float)homeCoords.getLatitude());
+            editor.putFloat(getString(R.string.homeLongitute), (float)homeCoords.getLongitude());
+            editor.commit();
         }
     }
 
@@ -43,9 +52,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         homeButton.setOnClickListener(new homeOnClickListener());
         LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        homeCoords.setLatitude(sharedPref.getFloat(getString(R.string.homeLatitude), 0f));
+        homeCoords.setLongitude(sharedPref.getFloat(getString(R.string.homeLongitute), 0f));
+        helloWorld.setText("Saved home Coords are: " + homeCoords.getLongitude() + " " + homeCoords.getLatitude());
+
+
+
         LocationListener locationListener = new LocationListener() {
             public void onLocationChanged(Location location) {
                 // Called when a new location is found by the network location provider.
+                lastKnownCoords = location;
             }
 
             public void onStatusChanged(String provider, int status, Bundle extras) {
@@ -61,11 +78,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         try{
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
-            helloWorld.setText("Successful");
+            //helloWorld.setText("Successful");
         }
         catch (SecurityException e){
             helloWorld.setText("Fail");
         }
+
+
 
 
         Geofence fence = new Geofence.Builder()
