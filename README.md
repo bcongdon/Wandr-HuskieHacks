@@ -1,1 +1,1 @@
-# EZCore-HuskieHacks
+# Wandr-HuskieHacks
