@@ -18,44 +18,47 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="RcV-zj-6MN">
-                                <rect key="frame" x="120" y="102" width="338" height="229"/>
-                                <connections>
-                                    <outlet property="delegate" destination="9pv-A4-QxB" id="MOm-fk-TOk"/>
-                                </connections>
-                            </mapView>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vEu-zN-7gh">
-                                <rect key="frame" x="232" y="339" width="115" height="30"/>
+                                <rect key="frame" x="232" y="437" width="115" height="30"/>
                                 <state key="normal" title="Current Location"/>
                                 <connections>
                                     <action selector="getLocation:" destination="9pv-A4-QxB" eventType="touchUpInside" id="V8q-Si-jhc"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Activate Tracking" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iie-Ex-TrK">
-                                <rect key="frame" x="151" y="420" width="133" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Activate Monitoring" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iie-Ex-TrK">
+                                <rect key="frame" x="132" y="475" width="149" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="qXg-0D-dqg">
-                                <rect key="frame" x="193" y="449" width="51" height="31"/>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="qXg-0D-dqg">
+                                <rect key="frame" x="190" y="504" width="51" height="31"/>
                                 <connections>
                                     <action selector="monitoringChanged:" destination="9pv-A4-QxB" eventType="valueChanged" id="Si7-LG-Soo"/>
                                 </connections>
                             </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gfZ-eK-gPb">
-                                <rect key="frame" x="268" y="73" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gfZ-eK-gPb">
+                                <rect key="frame" x="268" y="8" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="RcV-zj-6MN">
+                                <rect key="frame" x="99" y="48" width="381" height="321"/>
+                                <connections>
+                                    <outlet property="delegate" destination="9pv-A4-QxB" id="MOm-fk-TOk"/>
+                                </connections>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="RcV-zj-6MN" firstAttribute="top" secondItem="gfZ-eK-gPb" secondAttribute="bottom" constant="19" id="4Un-Y3-wCR"/>
                             <constraint firstItem="vEu-zN-7gh" firstAttribute="top" secondItem="RcV-zj-6MN" secondAttribute="bottom" constant="8" id="EVb-og-92Y"/>
                             <constraint firstItem="RcV-zj-6MN" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="QEV-vy-JEd"/>
                             <constraint firstItem="qXg-0D-dqg" firstAttribute="top" secondItem="iie-Ex-TrK" secondAttribute="bottom" constant="8" id="SPi-H8-wVT"/>
                             <constraint firstItem="gfZ-eK-gPb" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="abR-6f-DNb"/>
+                            <constraint firstItem="gfZ-eK-gPb" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="8" id="f81-0I-622"/>
+                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="qXg-0D-dqg" secondAttribute="bottom" constant="20" id="h6N-yZ-kE4"/>
                             <constraint firstItem="vEu-zN-7gh" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="kZJ-iE-saj"/>
                             <constraint firstItem="iie-Ex-TrK" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="mCd-VN-jaD"/>
                             <constraint firstItem="qXg-0D-dqg" firstAttribute="centerX" secondItem="iie-Ex-TrK" secondAttribute="centerX" id="sYS-TC-5Wd"/>
@@ -70,7 +73,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="856" y="-510"/>
+            <point key="canvasLocation" x="854" y="-522"/>
         </scene>
         <!--Settings-->
         <scene sceneID="wg7-f3-ORb">
