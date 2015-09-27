@@ -22,8 +22,15 @@ import com.google.android.gms.location.Geofence;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    Button imOKButton;
+    Button imOKButton,homeButton;
     TextView helloWorld;
+
+    public class homeOnClickListener implements Button.OnClickListener {
+        //Do stuff
+        public void onClick(View v){
+            helloWorld.setText("Home");
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +38,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         imOKButton = (Button) findViewById(R.id.button);
         helloWorld = (TextView) findViewById(R.id.textView);
+        homeButton = (Button) findViewById(R.id.homeButton);
         imOKButton.setOnClickListener(this);
+        homeButton.setOnClickListener(new homeOnClickListener());
         LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
         LocationListener locationListener = new LocationListener() {

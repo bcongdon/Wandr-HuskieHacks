@@ -1,6 +1,7 @@
 package huskiehacks.project;
 
 import android.os.Bundle;
+import android.preference.Preference;
 import android.preference.PreferenceFragment;
 
 /**
@@ -10,7 +11,10 @@ public class MyPreferenceActivity extends android.preference.PreferenceActivity 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getFragmentManager().beginTransaction().replace(android.R.id.content, new MyPreferenceFragment()).commit();
+
     }
+
+
 
     public static class MyPreferenceFragment extends PreferenceFragment
     {
@@ -19,6 +23,10 @@ public class MyPreferenceActivity extends android.preference.PreferenceActivity 
         {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.preferences);
+        }
+        public boolean onPreferenceTreeClick(Preference preference){
+            System.exit(0);
+            return false;
         }
     }
 }
